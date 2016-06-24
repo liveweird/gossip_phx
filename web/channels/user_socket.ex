@@ -2,7 +2,7 @@ defmodule GossipPhx.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", GossipPhx.RoomChannel
+  # channel "room:*", GossipPhx.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

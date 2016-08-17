@@ -15,5 +15,5 @@ config :gossip_phx, GossipPhx.Repo,
   username: "postgres",
   password: "postgres",
   database: "gossip_phx_test",
-  hostname: "localhost",
+  hostname: "192.168.99.100",
   pool: Ecto.Adapters.SQL.Sandbox

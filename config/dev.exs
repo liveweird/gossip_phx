@@ -39,5 +39,5 @@ config :gossip_phx, GossipPhx.Repo,
   username: "postgres",
   password: "postgres",
   database: "gossip_phx_dev",
-  hostname: "localhost",
+  hostname: "192.168.99.100",
   pool_size: 10

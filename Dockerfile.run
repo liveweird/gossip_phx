@@ -1,0 +1,15 @@
+FROM ubuntu
+MAINTAINER Sebastian Gebski <sebastian@gebski.net>
+LABEL description="Gossip"
+
+# Set the locale, otherwise elixir will complain later on
+# RUN locale-gen en_US.UTF-8
+# ENV LANG en_US.UTF-8
+# ENV LANGUAGE en_US:en
+# ENV LC_ALL en_US.UTF-8
+
+EXPOSE 4000
+
+ADD ./rel/gossip_phx /gossip
+WORKDIR /gossip
+CMD ["bin/gossip_phx", "console"]

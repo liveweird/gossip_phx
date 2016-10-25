@@ -10,6 +10,7 @@ LABEL description="Gossip"
 
 EXPOSE 4000
 
-ADD ./rel/gossip_phx /gossip
-WORKDIR /gossip
-CMD ["bin/gossip_phx", "console"]
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y libsctp-dev libssl-dev
+
+# RUN apk add --no-cache lksctp-tools openssl

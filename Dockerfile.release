@@ -15,8 +15,6 @@ WORKDIR /gossip
 
 RUN mix local.hex --force
 RUN mix clean
-RUN mix release.clean
 RUN mix deps.get # --only-prod
+RUN mix release.clean
 RUN mix compile
-RUN mix release
-# CMD ["mix", "phoenix.server"]

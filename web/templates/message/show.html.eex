@@ -1,0 +1,13 @@
+<h2>Show message</h2>
+
+<ul>
+
+  <li>
+    <strong>Content:</strong>
+    <%= @message.content %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: message_path(@conn, :edit, @message) %>
+<%= link "Back", to: message_path(@conn, :index) %>

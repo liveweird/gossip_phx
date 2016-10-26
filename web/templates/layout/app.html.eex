@@ -30,6 +30,9 @@
       </main>
 
     </div> <!-- /container -->
+    <div align="center">
+      <span><%= DateTime.utc_now()  %> : <%= inspect(self()) %> : <b><%= Application.get_env(:gossip_phx, GossipPhx.Endpoint)[:instance]  %></b></span>
+    </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

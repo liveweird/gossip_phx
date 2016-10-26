@@ -15,7 +15,8 @@ config :gossip_phx, GossipPhx.Endpoint,
   secret_key_base: "QY9+2PlFbyRmF7eO7sQw1W3VYBy+qlylTIDYdjpopf9Sk0UAeRJsSP5WhobNXD2H",
   render_errors: [view: GossipPhx.ErrorView, accepts: ~w(html json)],
   pubsub: [name: GossipPhx.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  instance: "#{Mix.env}"
 
 # Configures Elixir's Logger
 config :logger, :console,

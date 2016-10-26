@@ -4,6 +4,9 @@ services:
     image: postgres
     environment:
     - POSTGRES_PASSWORD=postgres
+    volumes:
+    - postgres_data:/var/lib/postgresql
+    - postgres_logs:/var/log/postgresql
     ports:
     - "5432:5432"
   phoenix:
@@ -22,6 +25,6 @@ services:
     ports:
     - "4000:4000"
     command: gossip/rel/gossip_phx/bin/gossip_phx console
-#volumes:
-#  logs: {}
-#  data: {}
+volumes:
+  postgres_logs:
+  postgres_data:

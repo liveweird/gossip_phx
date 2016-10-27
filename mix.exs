@@ -19,7 +19,7 @@ defmodule GossipPhx.Mixfile do
   def application do
     [mod: {GossipPhx, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :phoenix_live_reload]]
+                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :conform, :conform_exrm]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,8 +38,9 @@ defmodule GossipPhx.Mixfile do
      {:phoenix_live_reload, "~> 1.0"},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:exrm, "~> 1.0"},
-     {:conform, "~> 2.1"}]
+     {:exrm, "~> 1.0", override: true},
+     {:conform, "~> 2.1", override: true},
+     {:conform_exrm, "~> 1.0", override: true}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

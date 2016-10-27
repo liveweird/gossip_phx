@@ -1,6 +1,7 @@
 %{"bbmustache": {:hex, :bbmustache, "1.0.4", "7ba94f971c5afd7b6617918a4bb74705e36cab36eb84b19b6a1b7ee06427aa38", [:rebar], []},
   "cf": {:hex, :cf, "0.2.1", "69d0b1349fd4d7d4dc55b7f407d29d7a840bf9a1ef5af529f1ebe0ce153fc2ab", [:rebar3], []},
   "conform": {:hex, :conform, "2.1.1", "8e31fdf84e7bc4bf09aaab1de9f231d611fb39f58463c67f4dcf1803c78a4222", [:mix], [{:neotoma, "~> 1.7.3", [hex: :neotoma, optional: false]}]},
+  "conform_exrm": {:hex, :conform_exrm, "1.0.0", "68d5923a74dad4169b51454d723d08ca1644b6a6deaf64eccd509fd084cd1343", [:mix], [{:conform, "> 0.0.0", [hex: :conform, optional: false]}, {:exrm, "> 0.0.0", [hex: :exrm, optional: false]}]},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], []},
   "cowboy": {:hex, :cowboy, "1.0.4", "a324a8df9f2316c833a470d918aaf73ae894278b8aa6226ce7a9bf699388f878", [:rebar, :make], [{:cowlib, "~> 1.0.0", [hex: :cowlib, optional: false]}, {:ranch, "~> 1.0", [hex: :ranch, optional: false]}]},
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [:make], []},

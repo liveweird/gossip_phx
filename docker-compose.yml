@@ -43,6 +43,16 @@ services:
     ports:
     - "4001:4001"
     command: gossip/rel/gossip_phx/bin/gossip_phx foreground
+  proxy:
+    image: gossip-haproxy
+    depends_on:
+    - phoenix_1
+    - phoenix_2
+    links:
+    - phoenix_1
+    - phoenix_2
+    ports:
+    - "80:80"
 volumes:
   postgres_logs:
   postgres_data:

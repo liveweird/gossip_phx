@@ -31,4 +31,6 @@ docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix releas
 docker build -t gossip-run -f Dockerfile.run .
 docker run --volumes-from gossip_vol -d -t -p 4000:4000 -e "RELEASE_CONFIG_FILE=/gossip/rel/gossip_phx_1.conf" gossip-run gossip/rel/gossip_phx/bin/gossip_phx console
 docker run --volumes-from gossip_vol -d -t -p 4001:4001 -e "RELEASE_CONFIG_FILE=/gossip/rel/gossip_phx_2.conf" gossip-run gossip/rel/gossip_phx/bin/gossip_phx console
+docker build -t gossip-haproxy -f Dockerfile.haproxy .
+docker run -d -p 80:80 --name gossip-haproxy gossip-haproxy
 ```

@@ -9,7 +9,7 @@ services:
     - postgres_logs:/var/log/postgresql
     ports:
     - "5432:5432"
-  phoenix:
+  phoenix_1:
     image: gossip-run
     external_links:
     - gossip_vol
@@ -22,8 +22,26 @@ services:
     - postgres
     environment:
     - MIX_ENV=prod
+    - RELEASE_CONFIG_FILE=/gossip/rel/gossip_phx_1.conf
     ports:
     - "4000:4000"
+    command: gossip/rel/gossip_phx/bin/gossip_phx foreground
+  phoenix_2:
+    image: gossip-run
+    external_links:
+    - gossip_vol
+    volumes_from:
+    - container:gossip_vol
+    # - logs:/var/log
+    depends_on:
+    - postgres
+    links:
+    - postgres
+    environment:
+    - MIX_ENV=prod
+    - RELEASE_CONFIG_FILE=/gossip/rel/gossip_phx_2.conf
+    ports:
+    - "4001:4001"
     command: gossip/rel/gossip_phx/bin/gossip_phx foreground
 volumes:
   postgres_logs:

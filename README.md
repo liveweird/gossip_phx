@@ -33,4 +33,7 @@ docker run --volumes-from gossip_vol -d -t -p 4000:4000 -e "RELEASE_CONFIG_FILE=
 docker run --volumes-from gossip_vol -d -t -p 4001:4001 -e "RELEASE_CONFIG_FILE=/gossip/rel/gossip_phx_2.conf" gossip-run gossip/rel/gossip_phx/bin/gossip_phx console
 docker build -t gossip-haproxy -f Dockerfile.haproxy .
 docker run -d -p 80:80 --name gossip-haproxy gossip-haproxy
+
+docker run -d --net=host --name=consul gliderlabs/consul-server -bootstrap
+docker run -d --net=host --name=registrator --volume=/var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator consul://localhost:8500
 ```

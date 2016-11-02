@@ -27,7 +27,8 @@ docker create -v /gossip/rel --name gossip_vol ubuntu /bin/true
 docker build -t gossip-release -f Dockerfile.release . 
 docker cp config/gossip_phx_1.conf gossip_vol:/gossip/rel/
 docker cp config/gossip_phx_2.conf gossip_vol:/gossip/rel/
-docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix release
+docker cp config/distillery.exs gossip_vol:/gossip/rel/config.exs
+docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix do release.clean, release
 docker build -t gossip-run -f Dockerfile.run .
 docker run --volumes-from gossip_vol -d -t -p 4000:4000 -e "RELEASE_CONFIG_FILE=/gossip/rel/gossip_phx_1.conf" gossip-run gossip/rel/gossip_phx/bin/gossip_phx console
 docker run --volumes-from gossip_vol -d -t -p 4001:4001 -e "RELEASE_CONFIG_FILE=/gossip/rel/gossip_phx_2.conf" gossip-run gossip/rel/gossip_phx/bin/gossip_phx console

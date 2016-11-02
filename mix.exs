@@ -19,7 +19,7 @@ defmodule GossipPhx.Mixfile do
   def application do
     [mod: {GossipPhx, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :conform #, :conform_exrm
+                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :conform, :distillery #, :conform_exrm
                    ]]
   end
 
@@ -42,7 +42,7 @@ defmodule GossipPhx.Mixfile do
      # {:exrm, "~> 1.0", override: true},
      {:conform, "~> 2.1", override: true},
      # {:conform_exrm, "~> 1.0", override: true}
-     {:distillery, "~> 0.10"}
+     {:distillery, git: "https://github.com/bitwalker/distillery"}
     ]
   end
 

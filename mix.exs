@@ -42,7 +42,8 @@ defmodule GossipPhx.Mixfile do
      # {:exrm, "~> 1.0", override: true},
      {:conform, "~> 2.1", override: true},
      # {:conform_exrm, "~> 1.0", override: true}
-     {:distillery, git: "https://github.com/bitwalker/distillery"}
+     {:distillery, git: "https://github.com/bitwalker/distillery"},
+     {:exredis, "~> 0.2.5"}
     ]
   end
 

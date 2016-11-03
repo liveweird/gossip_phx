@@ -12,6 +12,8 @@ defmodule GossipPhx do
       supervisor(GossipPhx.Repo, []),
       # Start the endpoint when the application starts
       supervisor(GossipPhx.Endpoint, []),
+      # Start the Redis client
+      worker(GossipPhx.RedisApi, [])
       # Start your own worker by calling: GossipPhx.Worker.start_link(arg1, arg2, arg3)
       # worker(GossipPhx.Worker, [arg1, arg2, arg3]),
     ]

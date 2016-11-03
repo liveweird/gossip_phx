@@ -18,6 +18,8 @@ defmodule GossipPhx.Router do
 
     get "/", PageController, :index
     resources "/messages", MessageController
+    get "/whispers", WhisperController, :index
+    post "/whispers/new", WhisperController, :create
   end
 
   # Other scopes may use custom stacks.

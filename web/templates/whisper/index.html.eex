@@ -1,0 +1,20 @@
+<h2>Listing whispers</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Content</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for saved_whisper <- @whispers do %>
+    <tr>
+      <td><%= whisper(saved_whisper, :content) %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<h2>New whisper</h2>
+
+<%= render "form.html", conn: @conn, action: whisper_path(@conn, :create) %>

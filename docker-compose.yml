@@ -67,6 +67,13 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  redis:
+    image: redis
+    ports:
+    - "6379:6379"
+    volumes:
+    - redis_data:/data
 volumes:
   postgres_logs:
   postgres_data:
+  redis_data:

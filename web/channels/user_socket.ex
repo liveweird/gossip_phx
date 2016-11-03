@@ -3,6 +3,7 @@ defmodule GossipPhx.UserSocket do
 
   ## Channels
   # channel "room:*", GossipPhx.RoomChannel
+  channel "whispers:lobby", GossipPhx.WhispersChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

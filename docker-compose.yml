@@ -73,6 +73,12 @@ services:
     - "6379:6379"
     volumes:
     - redis_data:/data
+  etcd:
+    image: quay.io/coreos/etcd
+    ports:
+    - "2379:2379"
+    - "2380:2380"
+    command: etcd -listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379
 volumes:
   postgres_logs:
   postgres_data:

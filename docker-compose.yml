@@ -79,6 +79,14 @@ services:
     - "2379:2379"
     - "2380:2380"
     command: etcd -listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379
+  registrator:
+    image: gliderlabs/registrator
+    network_mode: host
+    depends_on:
+    - etcd
+    volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+    command: etcd://192.168.99.100:2379
 volumes:
   postgres_logs:
   postgres_data:

@@ -12,3 +12,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y libsctp-dev libssl-dev inotify-tools
 
 # RUN apk add --no-cache lksctp-tools openssl
+
+RUN apt-get clean -y
+RUN apt-get autoclean -y
+RUN apt-get autoremove -y

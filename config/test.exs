@@ -15,5 +15,14 @@ config :gossip_phx, GossipPhx.Repo,
   username: "postgres",
   password: "postgres",
   database: "gossip_phx_test",
-  hostname: "192.168.99.100",
+  hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Configures Redis client
+config :exredis,
+  host: "localhost",
+  port: 6379,
+  password: "",
+  db: 0,
+  reconnect: :no_reconnect,
+  max_queue: :infinity

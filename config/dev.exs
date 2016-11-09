@@ -39,5 +39,14 @@ config :gossip_phx, GossipPhx.Repo,
   username: "postgres",
   password: "postgres",
   database: "gossip_phx_dev",
-  hostname: "192.168.99.100",
+  hostname: "localhost",
   pool_size: 10
+
+# Configures Redis client
+config :exredis,
+  host: "localhost",
+  port: 6379,
+  password: "",
+  db: 0,
+  reconnect: :no_reconnect,
+  max_queue: :infinity

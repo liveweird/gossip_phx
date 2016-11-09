@@ -19,7 +19,7 @@ defmodule GossipPhx.Mixfile do
   def application do
     [mod: {GossipPhx, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :conform, :distillery #, :conform_exrm
+                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :exredis, :conform, :distillery #, :conform_exrm
                    ]]
   end
 

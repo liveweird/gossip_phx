@@ -52,6 +52,53 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
   extends: [],
   import: [],
   mappings: [
+    "exredis.host": [
+      commented: false,
+      datatype: :binary,
+      default: "172.18.0.2",
+      doc: "Provide documentation for exredis.host here.",
+      hidden: false,
+      to: "exredis.host"
+    ],
+    "exredis.port": [
+      commented: false,
+      datatype: :integer,
+      default: 6379,
+      doc: "Provide documentation for exredis.port here.",
+      hidden: false,
+      to: "exredis.port"
+    ],
+    "exredis.password": [
+      commented: false,
+      datatype: :binary,
+      doc: "Provide documentation for exredis.password here.",
+      hidden: false,
+      to: "exredis.password"
+    ],
+    "exredis.db": [
+      commented: false,
+      datatype: :integer,
+      default: 0,
+      doc: "Provide documentation for exredis.db here.",
+      hidden: false,
+      to: "exredis.db"
+    ],
+    "exredis.reconnect": [
+      commented: false,
+      datatype: :atom,
+      default: :no_reconnect,
+      doc: "Provide documentation for exredis.reconnect here.",
+      hidden: false,
+      to: "exredis.reconnect"
+    ],
+    "exredis.max_queue": [
+      commented: false,
+      datatype: :atom,
+      default: :infinity,
+      doc: "Provide documentation for exredis.max_queue here.",
+      hidden: false,
+      to: "exredis.max_queue"
+    ],
     "logger.console.format": [
       commented: false,
       datatype: :binary,
@@ -190,7 +237,7 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
     "gossip_phx.Elixir.GossipPhx.Endpoint.secret_key_base": [
       commented: false,
       datatype: :binary,
-      default: "wrnegkhZEGV82MBI+6PYWZO/vODAFEMeyA+UPyKdBLp9EAJAcYzbFfy9rxzWOytc",
+      default: "pigdM8RPvj2f8F4XVsxF6pMJGV2LY4BECEeO1819T0cmb+m2lwCrn1SXixK0y1gC",
       doc: "Provide documentation for gossip_phx.Elixir.GossipPhx.Endpoint.secret_key_base here.",
       hidden: false,
       to: "gossip_phx.Elixir.GossipPhx.Endpoint.secret_key_base"
@@ -226,14 +273,6 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
       doc: "Provide documentation for gossip_phx.Elixir.GossipPhx.Repo.database here.",
       hidden: false,
       to: "gossip_phx.Elixir.GossipPhx.Repo.database"
-    ],
-    "gossip_phx.Elixir.GossipPhx.Repo.hostname": [
-      commented: false,
-      datatype: :binary,
-      default: "192.168.99.100",
-      doc: "Provide documentation for gossip_phx.Elixir.GossipPhx.Repo.hostname here.",
-      hidden: false,
-      to: "gossip_phx.Elixir.GossipPhx.Repo.hostname"
     ],
     "gossip_phx.Elixir.GossipPhx.Repo.pool_size": [
       commented: false,

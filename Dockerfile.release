@@ -17,3 +17,4 @@ RUN mix local.hex --force
 RUN mix clean
 RUN mix deps.get --only-prod
 RUN mix compile
+RUN mix phoenix.digest

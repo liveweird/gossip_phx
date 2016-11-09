@@ -22,10 +22,10 @@ services:
     - postgres
     environment:
       MIX_ENV: "prod"
-      RELEASE_CONFIG_FILE: /gossip/rel/gossip_phx_1.conf
+      RELEASE_CONFIG_FILE: /gossip/_build/prod/rel/gossip_phx_1.conf
     ports:
     - "4000:4000"
-    command: gossip/rel/gossip_phx/bin/gossip_phx foreground
+    command: gossip/_build/prod/rel/gossip_phx/bin/gossip_phx foreground
   phoenix_2:
     image: gossip-run
     external_links:
@@ -39,10 +39,10 @@ services:
     - postgres
     environment:
       MIX_ENV: "prod"
-      RELEASE_CONFIG_FILE: /gossip/rel/gossip_phx_2.conf
+      RELEASE_CONFIG_FILE: /gossip/_build/prod/rel/gossip_phx_2.conf
     ports:
     - "4001:4001"
-    command: gossip/rel/gossip_phx/bin/gossip_phx foreground
+    command: gossip/_build/prod/rel/gossip_phx/bin/gossip_phx foreground
   proxy:
     image: gossip-haproxy
     depends_on:

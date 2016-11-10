@@ -32,5 +32,6 @@ end
 
 release :gossip_phx do
   set version: current_version(:gossip_phx)
+  plugin Conform.ReleasePlugin
 end
 

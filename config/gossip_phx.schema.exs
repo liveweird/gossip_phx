@@ -52,53 +52,6 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
   extends: [],
   import: [],
   mappings: [
-    "exredis.host": [
-      commented: false,
-      datatype: :binary,
-      default: "172.18.0.2",
-      doc: "Provide documentation for exredis.host here.",
-      hidden: false,
-      to: "exredis.host"
-    ],
-    "exredis.port": [
-      commented: false,
-      datatype: :integer,
-      default: 6379,
-      doc: "Provide documentation for exredis.port here.",
-      hidden: false,
-      to: "exredis.port"
-    ],
-    "exredis.password": [
-      commented: false,
-      datatype: :binary,
-      doc: "Provide documentation for exredis.password here.",
-      hidden: false,
-      to: "exredis.password"
-    ],
-    "exredis.db": [
-      commented: false,
-      datatype: :integer,
-      default: 0,
-      doc: "Provide documentation for exredis.db here.",
-      hidden: false,
-      to: "exredis.db"
-    ],
-    "exredis.reconnect": [
-      commented: false,
-      datatype: :atom,
-      default: :no_reconnect,
-      doc: "Provide documentation for exredis.reconnect here.",
-      hidden: false,
-      to: "exredis.reconnect"
-    ],
-    "exredis.max_queue": [
-      commented: false,
-      datatype: :atom,
-      default: :infinity,
-      doc: "Provide documentation for exredis.max_queue here.",
-      hidden: false,
-      to: "exredis.max_queue"
-    ],
     "logger.console.format": [
       commented: false,
       datatype: :binary,
@@ -197,7 +150,7 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
     "gossip_phx.Elixir.GossipPhx.Endpoint.instance": [
       commented: false,
       datatype: :binary,
-      default: "prod",
+      default: "dunno",
       doc: "Provide documentation for gossip_phx.Elixir.GossipPhx.Endpoint.instance here.",
       hidden: false,
       to: "gossip_phx.Elixir.GossipPhx.Endpoint.instance"
@@ -250,6 +203,14 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
       hidden: false,
       to: "gossip_phx.Elixir.GossipPhx.Repo.adapter"
     ],
+    "gossip_phx.Elixir.GossipPhx.Repo.hostname": [
+      commented: false,
+      datatype: :binary,
+      default: "postgres",
+      doc: "Provide documentation for gossip_phx.Elixir.GossipPhx.Repo.hostname here.",
+      hidden: false,
+      to: "gossip_phx.Elixir.GossipPhx.Repo.hostname"
+    ],
     "gossip_phx.Elixir.GossipPhx.Repo.username": [
       commented: false,
       datatype: :binary,
@@ -281,6 +242,53 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
       doc: "Provide documentation for gossip_phx.Elixir.GossipPhx.Repo.pool_size here.",
       hidden: false,
       to: "gossip_phx.Elixir.GossipPhx.Repo.pool_size"
+    ],
+    "exredis.host": [
+      commented: false,
+      datatype: :binary,
+      default: "redis",
+      doc: "Provide documentation for exredis.host here.",
+      hidden: false,
+      to: "exredis.host"
+    ],
+    "exredis.port": [
+      commented: false,
+      datatype: :integer,
+      default: 6379,
+      doc: "Provide documentation for exredis.port here.",
+      hidden: false,
+      to: "exredis.port"
+    ],
+    "exredis.password": [
+      commented: false,
+      datatype: :binary,
+      doc: "Provide documentation for exredis.password here.",
+      hidden: false,
+      to: "exredis.password"
+    ],
+    "exredis.db": [
+      commented: false,
+      datatype: :integer,
+      default: 0,
+      doc: "Provide documentation for exredis.db here.",
+      hidden: false,
+      to: "exredis.db"
+    ],
+    "exredis.reconnect": [
+      commented: false,
+      datatype: :atom,
+      default: :no_reconnect,
+      doc: "Provide documentation for exredis.reconnect here.",
+      hidden: false,
+      to: "exredis.reconnect"
+    ],
+    "exredis.max_queue": [
+      commented: false,
+      datatype: :atom,
+      default: :infinity,
+      doc: "Provide documentation for exredis.max_queue here.",
+      hidden: false,
+      to: "exredis.max_queue"
     ]
   ],
   transforms: [],

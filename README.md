@@ -27,8 +27,8 @@ docker ps -a -q -f status=exited | foreach { docker rm $_ }
 docker build -t gossip-base -f Dockerfile.base .
 docker create -v /gossip/_build/prod/rel --name gossip_vol ubuntu /bin/true
 docker build -t gossip-release -f Dockerfile.release . 
-docker cp config/gossip_phx_1.conf gossip_vol:/gossip/_build/prod/rel/
-docker cp config/gossip_phx_2.conf gossip_vol:/gossip/_build/prod/rel/
+docker cp config/gossip_phx_1.conf gossip_vol:/gossip/_build/prod/rel/gossip_phx/releases/0.0.1/gossip_phx.conf
+docker cp config/gossip_phx_2.conf gossip_vol:/gossip/_build/prod/rel/gossip_phx/releases/0.0.1/gossip_phx.conf
 docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix release.clean
 docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix release --env=prod --verbose
 docker build -t gossip-run -f Dockerfile.run .

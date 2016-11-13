@@ -27,13 +27,15 @@ docker ps -a -q -f status=exited | foreach { docker rm $_ }
 docker build -t gossip-base -f Dockerfile.base .
 docker create -v /gossip/_build/prod/rel --name gossip_vol ubuntu /bin/true
 docker build -t gossip-release -f Dockerfile.release . 
-docker cp config/gossip_phx_1.conf gossip_vol:/gossip/_build/prod/rel/gossip_phx/releases/0.0.1/gossip_phx.conf
-docker cp config/gossip_phx_2.conf gossip_vol:/gossip/_build/prod/rel/gossip_phx/releases/0.0.1/gossip_phx.conf
 docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix release.clean
 docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix release --env=prod --verbose
+docker run --volumes-from gossip_vol gossip-release mkdir /gossip/_build/prod/rel/p_1
+docker run --volumes-from gossip_vol gossip-release mkdir /gossip/_build/prod/rel/p_2
+docker cp config/gossip_phx_1.conf gossip_vol:/gossip/_build/prod/rel/p_1/gossip_phx.conf
+docker cp config/gossip_phx_2.conf gossip_vol:/gossip/_build/prod/rel/p_2/gossip_phx.conf
 docker build -t gossip-run -f Dockerfile.run .
-docker run --volumes-from gossip_vol -d -t -p 4000:4000 -e "RELEASE_CONFIG_FILE=/gossip/_build/prod/rel/gossip_phx_1.conf" gossip-run gossip/_build/prod/rel/gossip_phx/bin/gossip_phx console
-docker run --volumes-from gossip_vol -d -t -p 4001:4001 -e "RELEASE_CONFIG_FILE=/gossip/_build/prod/rel/gossip_phx_2.conf" gossip-run gossip/_build/prod/rel/gossip_phx/bin/gossip_phx console
+docker run --volumes-from gossip_vol -d -t -p 4000:4000 -e "RELEASE_CONFIG_DIR=/gossip/_build/prod/rel/p_1" gossip-run gossip/_build/prod/rel/gossip_phx/bin/gossip_phx console
+docker run --volumes-from gossip_vol -d -t -p 4001:4001 -e "RELEASE_CONFIG_DIR=/gossip/_build/prod/rel/p_2" gossip-run gossip/_build/prod/rel/gossip_phx/bin/gossip_phx console
 docker build -t gossip-haproxy -f Dockerfile.haproxy .
 docker run -d -p 80:80 --name gossip-haproxy gossip-haproxy
 

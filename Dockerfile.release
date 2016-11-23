@@ -10,11 +10,14 @@ LABEL description="Gossip"
 
 ENV MIX_ENV prod
 
-ADD . /gossip
+RUN git clone https://github.com/liveweird/gossip_phx gossip
+COPY config/prod.secret.exs /gossip/config/prod.secret.exs
+# ADD . /gossip
 WORKDIR /gossip
 
 RUN mix local.hex --force
 RUN mix clean
 RUN mix deps.get --only-prod
 RUN mix compile
+RUN npm install
 RUN mix phoenix.digest

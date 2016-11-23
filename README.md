@@ -22,6 +22,21 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 ## Docker how-to
 
 ```
+docker pull redis
+docker pull quay.io/coreos/etcd
+docker pull wurstmeister/kafka
+docker pull alpine
+docker pull grafana/grafana
+docker pull buoyantio/linkerd
+docker pull ubuntu
+docker pull nginx
+docker pull gliderlabs/consul-server
+docker pull elixir
+docker pull postgres
+docker pull haproxy
+docker pull gliderlabs/registrator
+docker pull wurstmeister/zookeeper
+
 docker ps -a -q -f status=exited | foreach { docker rm $_ }
 
 docker build -t gossip-base -f Dockerfile.base .

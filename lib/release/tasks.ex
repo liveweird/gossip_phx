@@ -3,6 +3,6 @@ defmodule Release.Tasks do
     {:ok, _} = Application.ensure_all_started(:gossip_phx)
     path = Application.app_dir(:gossip_phx, "priv/repo/migrations")
     Ecto.Migrator.run(GossipPhx.Repo, path, :up, all: true)
-    :init.stop()
+    # :init.stop()
   end
 end

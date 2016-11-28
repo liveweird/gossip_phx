@@ -17,14 +17,14 @@ environment :dev do
   set dev_mode: true
   set include_erts: false
   set cookie: :"@yTF5Zz9)q+58ywpX&WWKbw8vp^|K.M!^wG6Ix)c&0-M,`V%:l:gX:rv9AVf(8z]"
-#  set post_start_hook: "rel/hooks/post_start"
+  set post_start_hook: "rel/hooks/post_start"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
   set cookie: :"@yTF5Zz9)q+58ywpX&WWKbw8vp^|K.M!^wG6Ix)c&0-M,`V%:l:gX:rv9AVf(8z]"
-#  set post_start_hook: "rel/hooks/post_start"
+  set post_start_hook: "rel/hooks/post_start"
 end
 
 # You may define one or more releases in this file.

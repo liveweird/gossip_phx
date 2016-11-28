@@ -20,4 +20,6 @@ RUN mix clean
 RUN mix deps.get --only-prod
 RUN mix compile
 RUN npm install
+RUN npm install --g brunch
+RUN brunch build --production
 RUN mix phoenix.digest

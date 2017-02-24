@@ -39,9 +39,12 @@ docker pull wurstmeister/zookeeper
 
 docker ps -a -q -f status=exited | foreach { docker rm $_ }
 
+docker run --name gossip_postgres -e POSTGRES_PASSWORD=postgres -d -t -p 5432:5432 postgres
+docker run --name gossip_redis -d -t -p 6379:6379 redis
+
 docker build -t gossip-base -f Dockerfile.base .
 docker create -v /gossip/_build/prod/rel --name gossip_vol ubuntu /bin/true
-docker build -t gossip-release -f Dockerfile.release . 
+docker build -t gossip-release -f Dockerfile.release .
 docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix release.clean
 docker run --volumes-from gossip_vol -e "MIX_ENV=prod" gossip-release mix release --env=prod --verbose
 docker run --volumes-from gossip_vol gossip-release mkdir /gossip/_build/prod/rel/p_1

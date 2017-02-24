@@ -19,7 +19,7 @@ defmodule GossipPhx.Mixfile do
   def application do
     [mod: {GossipPhx, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :exredis
+                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :redix
                    ]]
   end
 
@@ -39,7 +39,7 @@ defmodule GossipPhx.Mixfile do
      {:phoenix_live_reload, "~> 1.0"},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
-     {:exredis, "~> 0.2.5"}
+     {:redix, "~> 0.5"}
     ]
   end
 

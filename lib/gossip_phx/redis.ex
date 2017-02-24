@@ -5,18 +5,21 @@ defmodule GossipPhx.RedisApi do
 
   def start_link() do
     GenServer.start_link(__MODULE__, nil, [name: :redis])
-    # true = Process.register(client, name)
   end
 
   def init(nil) do
-    {:ok, client} = Exredis.start_link
+    config = Application.get_env(:gossip_phx, GossipPhx.RedisApi)
+    {:ok, client} = Redix.start_link(host: config[:host],
+      port: config[:port],
+#      password: config[:password],
+      database: config[:database])
     {:ok, %{ client: client }}
   end
 
   def terminate(_, state) do
     state
     |> Map.get(:client)
-    |> Exredis.stop
+    |> Redix.stop
   end
 
   def add_whisper(content) do
@@ -39,17 +42,17 @@ defmodule GossipPhx.RedisApi do
       state
       |> Map.get(:client)
     client
-    |> Exredis.Api.lpush("whispers", new_whisper)
+    |> Redix.command(["LPUSH", "whispers", new_whisper])
     client
-    |> Exredis.Api.ltrim("whispers", 0, 10)
+    |> Redix.command(["LTRIM", "whispers", 0, 10])
     {:reply, :ok, state}
   end
 
   def handle_call({:get_whispers}, _from, state) do
-    unmapped =
+    {:ok, unmapped} =
       state
       |> Map.get(:client)
-      |> Exredis.Api.lrange("whispers", 0, 10)
+      |> Redix.command(["LRANGE", "whispers", 0, 10])
     whispers =
       unmapped
       |> Enum.map(fn x -> whisper(content: x) end)
@@ -61,7 +64,7 @@ defmodule GossipPhx.RedisApi do
       state
       |> Map.get(:client)
     client
-    |> Exredis.Api.ltrim("whispers", 100, 101)
+    |> Redix.command(["LTRIM", "whispers", 100, 101])
     {:reply, :ok, state}
   end
 end

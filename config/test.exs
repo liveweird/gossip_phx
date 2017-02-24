@@ -19,10 +19,8 @@ config :gossip_phx, GossipPhx.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # Configures Redis client
-config :exredis,
+config :gossip_phx, GossipPhx.RedisApi,
   host: "localhost",
   port: 6379,
   password: "",
-  db: 0,
-  reconnect: :no_reconnect,
-  max_queue: :infinity
+  database: 0

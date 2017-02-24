@@ -4,7 +4,7 @@ defmodule GossipPhx.Mixfile do
   def project do
     [app: :gossip_phx,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -19,7 +19,7 @@ defmodule GossipPhx.Mixfile do
   def application do
     [mod: {GossipPhx, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :exredis, :conform, :distillery #, :conform_exrm
+                    :phoenix_ecto, :postgrex, :phoenix_live_reload, :exredis
                    ]]
   end
 
@@ -31,18 +31,14 @@ defmodule GossipPhx.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.0"},
+    [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
+     {:phoenix_ecto, "~> 3.2"},
+     {:postgrex, "~> 0.13"},
+     {:phoenix_html, "~> 2.9"},
      {:phoenix_live_reload, "~> 1.0"},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"},
-     # {:exrm, "~> 1.0", override: true},
-     {:conform, git: "https://github.com/bitwalker/conform"},
-     # {:conform_exrm, "~> 1.0", override: true}
-     {:distillery, git: "https://github.com/bitwalker/distillery"},
+     {:gettext, "~> 0.13"},
+     {:cowboy, "~> 1.1"},
      {:exredis, "~> 0.2.5"}
     ]
   end
@@ -59,3 +55,4 @@ defmodule GossipPhx.Mixfile do
      "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end
+

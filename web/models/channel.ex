@@ -1,8 +1,8 @@
-defmodule GossipPhx.Message do
+defmodule GossipPhx.Channel do
   use GossipPhx.Web, :model
 
-  schema "messages" do
-    field :content, :string
+  schema "channels" do
+    field :name, :string
 
     timestamps()
   end
@@ -12,7 +12,7 @@ defmodule GossipPhx.Message do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:content])
-    |> validate_required([:content])
+    |> cast(params, [:name])
+    |> validate_required([:name])
   end
 end

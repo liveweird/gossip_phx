@@ -14,16 +14,12 @@ defmodule GossipPhx.Router do
   end
 
   scope "/", GossipPhx do
-    pipe_through :browser # Use the default browser stack
-
+    pipe_through :browser
     get "/", PageController, :index
-    resources "/messages", MessageController
-    get "/whispers", WhisperController, :index
-    post "/whispers/new", WhisperController, :create
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", GossipPhx do
-  #   pipe_through :api
-  # end
+  scope "/api", GossipPhx do
+    pipe_through :api
+    resources "/channels", ChannelController, except: [:new, :edit]
+  end
 end

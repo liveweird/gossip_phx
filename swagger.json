@@ -1,0 +1,55 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/api/channels": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "summary": "Gossip channels",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "parameters": [],
+        "operationId": "GossipPhx.ChannelController.index",
+        "description": "List all available channels"
+      }
+    }
+  },
+  "info": {
+    "version": "1.0",
+    "title": "Gossip"
+  },
+  "host": "localhost:4000",
+  "definitions": {
+    "Channels": {
+      "type": "array",
+      "title": "Channels",
+      "items": {
+        "$ref": "#/definitions/Channel"
+      },
+      "description": "A collection of channels"
+    },
+    "Channel": {
+      "type": "object",
+      "title": "Channel",
+      "required": [
+        "name",
+        "id"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Channel name"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier"
+        }
+      },
+      "description": "Groups chat around topic"
+    }
+  }
+}

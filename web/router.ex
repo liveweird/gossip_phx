@@ -11,6 +11,7 @@ defmodule GossipPhx.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    # plug PhoenixSwagger.Plug.Validate
   end
 
   scope "/", GossipPhx do
@@ -21,5 +22,14 @@ defmodule GossipPhx.Router do
   scope "/api", GossipPhx do
     pipe_through :api
     resources "/channels", ChannelController, except: [:new, :edit]
+  end
+
+  def swagger_info do
+    %{
+      info: %{
+        version: "1.0",
+        title: "Gossip"
+      }
+    }
   end
 end

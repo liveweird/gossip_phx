@@ -24,9 +24,11 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 ```
 docker pull redis
 docker pull postgres
+docker pull swaggerapi/swagger-ui
 
 docker ps -a -q -f status=exited | foreach { docker rm $_ }
 
 docker run --name gossip_postgres -e POSTGRES_PASSWORD=postgres -d -t -p 5432:5432 postgres
 docker run --name gossip_redis -d -t -p 6379:6379 redis
+docker run --name gossip_swagger -d -t -p 80:8080 swaggerapi/swagger-ui
 ```

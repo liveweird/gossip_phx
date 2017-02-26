@@ -39,7 +39,8 @@ defmodule GossipPhx.Mixfile do
      {:phoenix_live_reload, "~> 1.0"},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
-     {:redix, "~> 0.5"}
+     {:redix, "~> 0.5"},
+     {:phoenix_swagger, "~> 0.4"}
     ]
   end
 

@@ -40,7 +40,8 @@ defmodule GossipPhx.Mixfile do
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
      {:redix, "~> 0.5"},
-     {:phoenix_swagger, "~> 0.4"}
+     {:phoenix_swagger, "~> 0.4"},
+     {:cors_plug, "~> 1.2"}
     ]
   end
 

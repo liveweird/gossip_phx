@@ -15,8 +15,8 @@ defmodule GossipPhx.Router do
   end
 
   scope "/", GossipPhx do
-    pipe_through :browser
-    get "/", PageController, :index
+    pipe_through :api
+    get "/swagger.json", PageController, :index
   end
 
   scope "/api", GossipPhx do

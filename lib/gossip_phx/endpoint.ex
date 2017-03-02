@@ -38,5 +38,6 @@ defmodule GossipPhx.Endpoint do
     key: "_gossip_phx_key",
     signing_salt: "mawaBg5E"
 
+  plug CORSPlug
   plug GossipPhx.Router
 end

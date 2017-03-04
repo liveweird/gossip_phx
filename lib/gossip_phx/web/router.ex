@@ -1,4 +1,4 @@
-defmodule GossipPhx.Router do
+defmodule GossipPhx.Web.Router do
   use GossipPhx.Web, :router
 
   pipeline :browser do
@@ -14,12 +14,12 @@ defmodule GossipPhx.Router do
     # plug PhoenixSwagger.Plug.Validate
   end
 
-  scope "/", GossipPhx do
+  scope "/", GossipPhx.Web do
     pipe_through :api
     get "/swagger.json", PageController, :index
   end
 
-  scope "/api", GossipPhx do
+  scope "/api", GossipPhx.Web do
     pipe_through :api
     resources "/channels", ChannelController, except: [:new, :edit]
   end

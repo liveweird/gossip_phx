@@ -1,4 +1,4 @@
-defmodule GossipPhx.Channel do
+defmodule GossipPhx.Web.Channel do
   use GossipPhx.Web, :model
 
   schema "channels" do

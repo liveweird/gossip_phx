@@ -1,11 +1,11 @@
-defmodule GossipPhx.ChangesetView do
+defmodule GossipPhx.Web.ChangesetView do
   use GossipPhx.Web, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `GossipPhx.ErrorHelpers.translate_error/1` for more details.
+  `GossipPhx.Web.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

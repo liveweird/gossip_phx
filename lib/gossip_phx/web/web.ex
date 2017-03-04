@@ -28,20 +28,20 @@ defmodule GossipPhx.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: GossipPhx.Web
 
       alias GossipPhx.Repo
       import Ecto
       import Ecto.Query
 
-      import GossipPhx.Router.Helpers
-      import GossipPhx.Gettext
+      import GossipPhx.Web.Router.Helpers
+      import GossipPhx.Web.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/gossip_phx/web/templates", namespace: GossipPhx.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -49,9 +49,9 @@ defmodule GossipPhx.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import GossipPhx.Router.Helpers
-      import GossipPhx.ErrorHelpers
-      import GossipPhx.Gettext
+      import GossipPhx.Web.Router.Helpers
+      import GossipPhx.Web.ErrorHelpers
+      import GossipPhx.Web.Gettext
     end
   end
 
@@ -68,7 +68,7 @@ defmodule GossipPhx.Web do
       alias GossipPhx.Repo
       import Ecto
       import Ecto.Query
-      import GossipPhx.Gettext
+      import GossipPhx.Web.Gettext
     end
   end
 

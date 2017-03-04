@@ -10,10 +10,10 @@ config :gossip_phx,
   ecto_repos: [GossipPhx.Repo]
 
 # Configures the endpoint
-config :gossip_phx, GossipPhx.Endpoint,
+config :gossip_phx, GossipPhx.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "QY9+2PlFbyRmF7eO7sQw1W3VYBy+qlylTIDYdjpopf9Sk0UAeRJsSP5WhobNXD2H",
-  render_errors: [view: GossipPhx.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: GossipPhx.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: GossipPhx.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

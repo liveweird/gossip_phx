@@ -27,7 +27,7 @@ defmodule GossipPhx.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint GossipPhx.Endpoint
+      @endpoint GossipPhx.Web.Endpoint
     end
   end
 

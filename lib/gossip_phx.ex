@@ -11,7 +11,7 @@ defmodule GossipPhx do
       # Start the Ecto repository
       supervisor(GossipPhx.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(GossipPhx.Endpoint, []),
+      supervisor(GossipPhx.Web.Endpoint, []),
       # Start the Redis client
       worker(GossipPhx.RedisApi, [])
       # Start your own worker by calling: GossipPhx.Worker.start_link(arg1, arg2, arg3)
@@ -27,7 +27,7 @@ defmodule GossipPhx do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    GossipPhx.Endpoint.config_change(changed, removed)
+    GossipPhx.Web.Endpoint.config_change(changed, removed)
     :ok
   end
 end

@@ -1,4 +1,4 @@
-defmodule GossipPhx.PageController do
+defmodule GossipPhx.Web.PageController do
   use GossipPhx.Web, :controller
 
   @swagger_data (

@@ -1,8 +1,8 @@
-defmodule GossipPhx.ChannelController do
+defmodule GossipPhx.Web.ChannelController do
   use GossipPhx.Web, :controller
   use PhoenixSwagger
 
-  alias GossipPhx.Channel
+  alias GossipPhx.Web.Channel
 
   swagger_path :index do
     get "/api/channels"
@@ -47,7 +47,7 @@ defmodule GossipPhx.ChannelController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(GossipPhx.ChangesetView, "error.json", changeset: changeset)
+        |> render(GossipPhx.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -66,7 +66,7 @@ defmodule GossipPhx.ChannelController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(GossipPhx.ChangesetView, "error.json", changeset: changeset)
+        |> render(GossipPhx.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

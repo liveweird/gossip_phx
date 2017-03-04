@@ -1,7 +1,7 @@
-defmodule GossipPhx.Endpoint do
+defmodule GossipPhx.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :gossip_phx
 
-  socket "/socket", GossipPhx.UserSocket
+  socket "/socket", GossipPhx.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -39,5 +39,5 @@ defmodule GossipPhx.Endpoint do
     signing_salt: "mawaBg5E"
 
   plug CORSPlug
-  plug GossipPhx.Router
+  plug GossipPhx.Web.Router
 end

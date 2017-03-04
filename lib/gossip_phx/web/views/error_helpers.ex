@@ -1,4 +1,4 @@
-defmodule GossipPhx.ErrorHelpers do
+defmodule GossipPhx.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule GossipPhx.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(GossipPhx.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(GossipPhx.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(GossipPhx.Gettext, "errors", msg, opts)
+      Gettext.dgettext(GossipPhx.Web.Gettext, "errors", msg, opts)
     end
   end
 end

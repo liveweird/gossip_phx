@@ -1,7 +1,7 @@
 defmodule GossipPhx.ChannelTest do
   use GossipPhx.ModelCase
 
-  alias GossipPhx.Channel
+  alias GossipPhx.Web.Channel
 
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}

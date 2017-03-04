@@ -1,4 +1,4 @@
-defmodule GossipPhx.PageView do
+defmodule GossipPhx.Web.PageView do
   use GossipPhx.Web, :view
 
   def render("index.json", %{data: data}) do

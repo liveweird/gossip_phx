@@ -25,10 +25,10 @@ defmodule GossipPhx.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import GossipPhx.Router.Helpers
+      import GossipPhx.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint GossipPhx.Endpoint
+      @endpoint GossipPhx.Web.Endpoint
     end
   end
 

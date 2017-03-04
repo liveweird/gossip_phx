@@ -1,4 +1,4 @@
-defmodule GossipPhx.ErrorView do
+defmodule GossipPhx.Web.ErrorView do
   use GossipPhx.Web, :view
 
   def render("404.html", _assigns) do

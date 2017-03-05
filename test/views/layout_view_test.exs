@@ -1,3 +1,3 @@
 defmodule GossipPhx.LayoutViewTest do
-  use GossipPhx.ConnCase, async: true
+  use GossipPhx.Web.ConnCase, async: true
 end

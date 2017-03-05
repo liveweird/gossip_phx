@@ -1,5 +1,5 @@
 defmodule GossipPhx.ChannelControllerTest do
-  use GossipPhx.ConnCase
+  use GossipPhx.Web.ConnCase
 
   alias GossipPhx.Web.Channel
   @valid_attrs %{name: "some content"}

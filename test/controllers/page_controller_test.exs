@@ -1,5 +1,5 @@
 defmodule GossipPhx.PageControllerTest do
-  use GossipPhx.ConnCase
+  use GossipPhx.Web.ConnCase
 
   test "GET /swagger.json", %{conn: conn} do
     conn = get conn, "/swagger.json"

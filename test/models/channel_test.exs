@@ -1,5 +1,5 @@
 defmodule GossipPhx.ChannelTest do
-  use GossipPhx.ModelCase
+  use GossipPhx.Web.ModelCase
 
   alias GossipPhx.Web.Channel
 

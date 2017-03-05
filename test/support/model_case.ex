@@ -1,4 +1,4 @@
-defmodule GossipPhx.ModelCase do
+defmodule GossipPhx.Web.ModelCase do
   @moduledoc """
   This module defines the test case to be used by
   model tests.
@@ -21,7 +21,7 @@ defmodule GossipPhx.ModelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import GossipPhx.ModelCase
+      import GossipPhx.Web.ModelCase
     end
   end
 

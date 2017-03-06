@@ -30,11 +30,13 @@ defmodule GossipPhx.Web.ChannelController do
     }
   end
 
+  @spec index(%{}, []) :: any()
   def index(conn, _params) do
     channels = Repo.all(Channel)
     render(conn, "index.json", channels: channels)
   end
 
+  @spec create(%{}, %{}) :: any()
   def create(conn, %{"channel" => channel_params}) do
     changeset = Channel.changeset(%Channel{}, channel_params)
 
@@ -51,11 +53,13 @@ defmodule GossipPhx.Web.ChannelController do
     end
   end
 
+  @spec show(%{}, %{}) :: any()
   def show(conn, %{"id" => id}) do
     channel = Repo.get!(Channel, id)
     render(conn, "show.json", channel: channel)
   end
 
+  @spec update(%{}, %{}) :: any()
   def update(conn, %{"id" => id, "channel" => channel_params}) do
     channel = Repo.get!(Channel, id)
     changeset = Channel.changeset(channel, channel_params)
@@ -70,6 +74,7 @@ defmodule GossipPhx.Web.ChannelController do
     end
   end
 
+  @spec delete(%{}, %{}) :: any()
   def delete(conn, %{"id" => id}) do
     channel = Repo.get!(Channel, id)
 

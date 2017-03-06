@@ -41,7 +41,8 @@ defmodule GossipPhx.Mixfile do
      {:cowboy, "~> 1.1"},
      {:redix, "~> 0.5"},
      {:phoenix_swagger, "~> 0.4"},
-     {:cors_plug, "~> 1.2"}
+     {:cors_plug, "~> 1.2"},
+     {:credo, "~> 0.5", only: [:dev, :test]}
     ]
   end
 

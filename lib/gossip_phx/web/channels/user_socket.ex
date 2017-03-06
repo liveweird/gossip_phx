@@ -19,11 +19,13 @@ defmodule GossipPhx.Web.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
+  @spec connect([], any()) :: {:atom, any()}
   def connect(_params, socket) do
     {:ok, socket}
   end
 
-  # Socket id's are topics that allow you to identify all sockets for a given user:
+  # Socket id's are topics that allow you
+  # to identify all sockets for a given user:
   #
   #     def id(socket), do: "users_socket:#{socket.assigns.user_id}"
   #
@@ -33,5 +35,6 @@ defmodule GossipPhx.Web.UserSocket do
   #     GossipPhx.Web.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
+  @spec id(any()) :: none()
   def id(_socket), do: nil
 end

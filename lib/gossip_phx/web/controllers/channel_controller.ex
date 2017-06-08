@@ -1,32 +1,36 @@
 defmodule GossipPhx.Web.ChannelController do
   use GossipPhx.Web, :controller
   use PhoenixSwagger
+  require PhoenixSwagger.JsonApi
 
   alias GossipPhx.Web.Channel
 
   swagger_path :index do
     get "/api/channels"
-    summary "Gossip channels"
+    summary "List Gossip channels"
     description "List all available channels"
-    response 200, "Success"
+    paging size: "page[size]", number: "page[number]"
+    response 200, "OK", Schema.ref(:Channels)
+  end
+
+  swagger_path :create do
+    put "/api/channels"
+    summary "Create a Gossip channel"
+    description "Create a completely new Gossip channel"
+    response 200, "OK", Schema.ref(:Channel)
   end
 
   def swagger_definitions do
     %{
-      Channel: swagger_schema do
-      title "Channel"
-      description "Groups chat around topic"
-      properties do
-        id :string, "Unique identifier", required: true
-        name :string, "Channel name", required: true
-      end
-    end,
-      Channels: swagger_schema do
-        title "Channels"
-        description "A collection of channels"
-        type :array
-        items Schema.ref(:Channel)
-      end
+      ChannelResource: JsonApi.resource do
+        description "Groups chat around topic"
+        attributes do
+          id :string, "Unique identifier", required: true
+          name :string, "Channel name", required: true
+        end
+      end,
+      Channels: JsonApi.page(:ChannelResource),
+      Channel: JsonApi.single(:ChannelResource)
     }
   end
 

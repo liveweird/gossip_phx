@@ -31,18 +31,19 @@ defmodule GossipPhx.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0-rc.0"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.2"},
-     {:postgrex, "~> 0.13"},
-     {:phoenix_html, "~> 2.9"},
-     {:phoenix_live_reload, "~> 1.0"},
-     {:gettext, "~> 0.13"},
-     {:cowboy, "~> 1.1"},
-     {:redix, "~> 0.5"},
-     {:phoenix_swagger, "~> 0.4"},
-     {:cors_plug, "~> 1.2"},
-     {:credo, "~> 0.5", only: [:dev, :test]}
+    [{:phoenix, "~> 1.3.0-rc.2"},
+     {:phoenix_pubsub, "~> 1.0.1"},
+     {:phoenix_ecto, "~> 3.2.3"},
+     {:postgrex, "~> 0.13.3"},
+     {:phoenix_html, "~> 2.9.3"},
+     {:phoenix_live_reload, "~> 1.0.8"},
+     {:gettext, "~> 0.13.1"},
+     {:cowboy, "~> 1.1.2"},
+     {:redix, "~> 0.6.1"},
+     {:phoenix_swagger, "~> 0.6.2"},
+     {:ex_json_schema, "~> 0.5"},
+     {:cors_plug, "~> 1.3"},
+     {:credo, "~> 0.8.1", only: [:dev, :test]}
     ]
   end
 

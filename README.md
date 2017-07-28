@@ -31,4 +31,5 @@ docker ps -a -q -f status=exited | foreach { docker rm $_ }
 docker run --name gossip_postgres -e POSTGRES_PASSWORD=postgres -d -t -p 5432:5432 postgres
 docker run --name gossip_redis -d -t -p 6379:6379 redis
 docker run --name gossip_swagger -d -t -p 80:8080 swaggerapi/swagger-ui
+docker run --name gossip_elastic -d -t -p 9200:9200 -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" docker.elastic.co/elasticsearch/elasticsearch:5.5.0
 ```

@@ -4,7 +4,7 @@ defmodule GossipPhx.Mixfile do
   def project do
     [app: :gossip_phx,
      version: "0.0.1",
-     elixir: "~> 1.4",
+     elixir: "~> 1.5",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -31,8 +31,8 @@ defmodule GossipPhx.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0-rc.2"},
-     {:phoenix_pubsub, "~> 1.0.1"},
+    [{:phoenix, "~> 1.3.0"},
+     {:phoenix_pubsub, "~> 1.0.2"},
      {:phoenix_ecto, "~> 3.2.3"},
      {:postgrex, "~> 0.13.3"},
      {:phoenix_html, "~> 2.9.3"},
@@ -40,10 +40,10 @@ defmodule GossipPhx.Mixfile do
      {:gettext, "~> 0.13.1"},
      {:cowboy, "~> 1.1.2"},
      {:redix, "~> 0.6.1"},
-     {:phoenix_swagger, "~> 0.6.2"},
+     {:phoenix_swagger, "~> 0.6.4"},
      {:ex_json_schema, "~> 0.5"},
-     {:cors_plug, "~> 1.3"},
-     {:credo, "~> 0.8.1", only: [:dev, :test]}
+     {:cors_plug, "~> 1.4"},
+     {:credo, "~> 0.8.4", only: [:dev, :test]}
     ]
   end
 

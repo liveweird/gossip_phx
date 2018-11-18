@@ -1,7 +1,9 @@
 defmodule GossipWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :gossip_web
 
-  socket "/socket", GossipWeb.UserSocket
+  socket "/socket", GossipWeb.UserSocket,
+    websocket: true, # or list of options
+    longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -22,7 +24,7 @@ defmodule GossipWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
 
   plug Plug.MethodOverride
   plug Plug.Head

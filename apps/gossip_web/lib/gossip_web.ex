@@ -34,7 +34,7 @@ defmodule GossipWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      import GossipWeb.Router.Helpers
+      alias GossipWeb.Router.Helpers, as: Routes
       import GossipWeb.ErrorHelpers
       import GossipWeb.Gettext
     end

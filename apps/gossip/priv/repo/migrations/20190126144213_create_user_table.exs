@@ -7,7 +7,7 @@ defmodule Gossip.Repo.Migrations.CreateUserTable do
       add :user_name, :string
       add :description, :string
       add :is_active, :boolean, default: true
-      add :is_delected, :boolean, default: false
+      add :is_deleted, :boolean, default: false
       timestamps()
     end
   end

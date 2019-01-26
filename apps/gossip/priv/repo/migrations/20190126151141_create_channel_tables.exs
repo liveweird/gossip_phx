@@ -6,6 +6,7 @@ defmodule Gossip.Repo.Migrations.CreateChannelTables do
       add :id, :binary_id, primary_key: true, autogenerate:
       add :name, :string
       add :is_private, :boolean, default: false
+      add :is_deleted, :boolean, default: false
       timestamps()
       end
 

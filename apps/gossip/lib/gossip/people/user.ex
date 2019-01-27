@@ -1,8 +1,10 @@
 defmodule People.User do
   use Ecto.Schema
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
+
   schema "users" do
-    @primary_key {:id, :binary_id, autogenerate: true}
     field :user_name, :string
     field :description, :string
     field :is_active, :boolean, default: true

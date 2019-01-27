@@ -3,7 +3,7 @@ defmodule Gossip.Repo.Migrations.CreateChannelTables do
 
   def change do
     create table(:channels, primary_key: false) do
-      add :id, :binary_id, primary_key: true, autogenerate:
+      add :id, :uuid, primary_key: true
       add :name, :string
       add :is_private, :boolean, default: false
       add :is_deleted, :boolean, default: false
@@ -11,9 +11,9 @@ defmodule Gossip.Repo.Migrations.CreateChannelTables do
       end
 
     create table(:channel_users, primary_key: false) do
-      add :id, :binary_id, primary_key: true, autogenerate:
-      add :user_id, :binary_id
-      add :channel_id, references("channels", type: :binary_id)
+      add :id, :uuid, primary_key: true
+      add :user_id, :uuid
+      add :channel_id, references("channels", column: :id, type: :uuid)
       timestamps()
       end
   end

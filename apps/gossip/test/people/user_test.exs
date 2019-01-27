@@ -23,5 +23,11 @@ defmodule People.UserTest do
       assert inserted.is_active == true
       assert inserted.is_deleted == false
     end
+
+    test "field-level validation prevents user from being created" do
+      user = %People.User{}
+      changeset = People.User.changeset(user, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Gossip.Repo.insert(changeset)
+    end
   end
 end

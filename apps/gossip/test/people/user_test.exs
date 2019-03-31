@@ -1,6 +1,7 @@
 defmodule People.UserTest do
   use Gossip.DataCase
 
+  import Ecto.Query
   alias People.User
 
   describe "users" do
@@ -9,8 +10,17 @@ defmodule People.UserTest do
     @updated_attrs %{user_name: "klm", description: "klm desc", is_active: false, is_deleted: true}
     @invalid_attrs %{user_name: nil, description: nil, is_active: nil, is_deleted: nil}
 
-    test "empty list of users" do
+    test "empty list of active users" do
+      query =
+        from u in People.User,
+        where: u.is_active == :true,
+        where: u.is_deleted == :false
 
+      users =
+        query
+        |> Gossip.Repo.all
+
+      assert Repo.aggregate(users, :count, :user_name) == 0
     end
 
     test "create and retrieve a user" do

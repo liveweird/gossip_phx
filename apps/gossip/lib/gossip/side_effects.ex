@@ -6,6 +6,10 @@ defmodule SideEffects do
   end
 
   ## public interface
+  def purge_events(server) do
+    GenServer.call(server, {:purge_events})
+  end
+
   def register_event(server, event_id) do
     GenServer.call(server, {:register_event, event_id})
   end
@@ -24,6 +28,11 @@ defmodule SideEffects do
   @impl true
   def init(:ok) do
     {:ok, %{}}
+  end
+
+  @impl true
+  def handle_call({:purge_events}, _from, _event_map) do
+    {:reply, :ok, %{}}
   end
 
   @impl true

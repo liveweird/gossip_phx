@@ -38,9 +38,9 @@ defmodule SideEffects do
   @impl true
   def handle_call({:register_event, event_id}, _from, event_map) do
     if Map.has_key?(event_map, event_id) do
-      {:error, "Event already exists"}
+      {:reply, {:error, "Event already exists"}, event_map}
     else
-      {:reply, event_id, Map.put(event_map, event_id, [])}
+      {:reply, :ok, Map.put(event_map, event_id, [])}
     end
   end
 
@@ -50,9 +50,9 @@ defmodule SideEffects do
       handlers = Map.fetch(event_map, event_id)
       updated_handlers = handlers ++ [handler]
       updated_map = %{event_map | event_id: updated_handlers}
-      {:reply, event_id, updated_map}
+      {:reply, :ok, updated_map}
     else
-      {:error, "Event is not registered"}
+      {:reply, {:error, "Event is not registered"}, event_map}
     end
   end
 
@@ -64,9 +64,9 @@ defmodule SideEffects do
       |> Enum.each(fn handler ->
         handler.(payload)
       end)
-      {:reply, event_id, event_map}
+      {:reply, :ok, event_map}
     else
-      {:error, "Event is not registered"}
+      {:reply, {:error, "Event is not registered"}, event_map}
     end
   end
 

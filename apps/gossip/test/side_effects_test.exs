@@ -28,11 +28,11 @@ defmodule SideEffectsTest do
     test "registered handled has been called when event of this type was raised", %{side_effects: pid} do
       assert :ok == SideEffects.purge_events(pid)
       assert :ok == SideEffects.register_event(pid, :something_happened)
-      handler = fn(payload) ->
-        send self(), payload
+      handler = fn({self_pid, payload}) ->
+        send self_pid, payload
       end
       assert :ok == SideEffects.register_handler(pid, :something_happened, handler)
-      assert :ok == SideEffects.raise_event(pid, :something_happened, "xyz")
+      assert :ok == SideEffects.raise_event(pid, :something_happened, {self(), "xyz"})
       assert_received "xyz"
     end
 

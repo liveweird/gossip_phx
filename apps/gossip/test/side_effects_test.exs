@@ -37,7 +37,15 @@ defmodule SideEffectsTest do
     end
 
     test "registered handled has NOT been called when event of different type was raised", %{side_effects: pid} do
-
+      assert :ok == SideEffects.purge_events(pid)
+      assert :ok == SideEffects.register_event(pid, :something_happened)
+      assert :ok == SideEffects.register_event(pid, :something_else_happened)
+      handler = fn({self_pid, payload}) ->
+        send self_pid, payload
+      end
+      assert :ok == SideEffects.register_handler(pid, :something_happened, handler)
+      assert :ok == SideEffects.raise_event(pid, :something_else_happened, {self(), "xyz"})
+      refute_receive "xyz", 200
     end
 
     test "raise event of registered type", %{side_effects: pid} do

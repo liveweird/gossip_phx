@@ -48,13 +48,5 @@ defmodule SideEffectsTest do
       refute_receive "xyz", 200
     end
 
-    test "raise event of registered type", %{side_effects: pid} do
-
-    end
-
-    test "raise event of non-registered type", %{side_effects: pid} do
-
-    end
-
   end
 end

@@ -8,8 +8,8 @@ defmodule People.Service do
 
     result =
       case Gossip.Repo.insert(changeset) do
-        {:ok, %People.User{} = inserted} -> inserted
-        _ -> nil
+        {:ok, %People.User{} = inserted} -> {:ok, inserted}
+        _ -> {:error, "User has not been inserted."}
       end
 
     result
@@ -28,10 +28,15 @@ defmodule People.Service do
   def get_user(name) do
     query =
       from u in People.User,
-      where: u.name == ^name,
+      where: u.user_name == ^name,
       where: u.is_deleted == :false
 
-    query
-    |> Gossip.Repo.one
+    result =
+      case query |> Gossip.Repo.one do
+        %People.User{} = retrieved -> {:ok, retrieved}
+        nil -> {:error, "User has not been found."}
+      end
+
+    result
   end
 end

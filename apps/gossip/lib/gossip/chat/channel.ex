@@ -11,4 +11,11 @@ defmodule Chat.Channel do
     has_many :channel_users, Chat.ChannelUser
     timestamps()
   end
+
+  def changeset(channel, params \\ %{}) do
+    channel
+    |> Ecto.Changeset.cast(params, [:name, :is_private, :is_deleted])
+    |> Ecto.Changeset.validate_required([:name, :is_private, :is_deleted])
+  end
+
 end

@@ -12,7 +12,7 @@ defmodule People.UserTest do
     test "create a user" do
       {:ok, inserted} = People.Contract.create_user("xyz", "xyz desc")
 
-      assert inserted.user_name == "xyz"
+      assert inserted.name == "xyz"
       assert inserted.description == "xyz desc"
       assert inserted.is_active == true
       assert inserted.is_deleted == false
@@ -21,14 +21,14 @@ defmodule People.UserTest do
     test "field-level validation prevents user from being created" do
       {:error, message} = People.Contract.create_user(nil, nil)
 
-      assert "User has not been inserted." == message
+      assert "User has not been created." == message
     end
 
     test "created user is the same as received" do
       {:ok, inserted} = People.Contract.create_user("xyz", "xyz desc")
       {:ok, retrieved} = People.Contract.get_user("xyz")
 
-      assert inserted.user_name == retrieved.user_name
+      assert inserted.name == retrieved.name
       assert inserted.description == retrieved.description
       assert inserted.is_active == retrieved.is_active
       assert inserted.is_deleted == retrieved.is_deleted

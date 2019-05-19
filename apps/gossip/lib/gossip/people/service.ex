@@ -3,8 +3,7 @@ defmodule People.Service do
   import Ecto.Query
 
   def create_user(name, description) do
-    user = %People.User{}
-    changeset = People.User.changeset(user, %{user_name: name, description: description, is_active: true, is_deleted: false})
+    changeset = People.User.changeset(%People.User{}, %{user_name: name, description: description, is_active: true, is_deleted: false})
 
     result =
       case Gossip.Repo.insert(changeset) do
@@ -39,4 +38,19 @@ defmodule People.Service do
 
     result
   end
+
+  def block_user(name) do
+    with {:ok, user} <- get_user(name)
+    do
+      changeset = People.User.changeset(user, %{is_active: false})
+
+      case Gossip.Repo.update(changeset) do
+        {:ok, %People.User{} = blocked} -> {:ok, blocked}
+        _ -> {:error, "User has not been updated."}
+      end
+    else
+      {:error, _} -> {:error, "User has not been found."}
+    end
+  end
+
 end

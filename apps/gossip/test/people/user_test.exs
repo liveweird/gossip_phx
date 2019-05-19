@@ -40,5 +40,24 @@ defmodule People.UserTest do
       assert "User has not been found." == message
     end
 
+    test "blocked user is ... blocked" do
+      {:ok, _} = People.Contract.create_user("xyz", "xyz desc")
+      {:ok, blocked} = People.Contract.block_user("xyz")
+      {:ok, retrieved} = People.Contract.get_user("xyz")
+
+      assert false == blocked.is_active
+      assert false == retrieved.is_active
+    end
+
+    test "twice-blocked user is still blocked" do
+      {:ok, _} = People.Contract.create_user("xyz", "xyz desc")
+      {:ok, _} = People.Contract.block_user("xyz")
+      {:ok, twice_blocked} = People.Contract.block_user("xyz")
+      {:ok, retrieved} = People.Contract.get_user("xyz")
+
+      assert false == twice_blocked.is_active
+      assert false == retrieved.is_active
+    end
+
   end
 end

@@ -5,7 +5,7 @@ defmodule People.User do
   @foreign_key_type :binary_id
 
   schema "users" do
-    field :user_name, :string
+    field :name, :string
     field :description, :string
     field :is_active, :boolean, default: true
     field :is_deleted, :boolean, default: false
@@ -14,7 +14,7 @@ defmodule People.User do
 
   def changeset(user, params \\ %{}) do
     user
-    |> Ecto.Changeset.cast(params, [:user_name, :description, :is_active, :is_deleted])
-    |> Ecto.Changeset.validate_required([:user_name, :description, :is_active, :is_deleted])
+    |> Ecto.Changeset.cast(params, [:name, :description, :is_active, :is_deleted])
+    |> Ecto.Changeset.validate_required([:name, :description, :is_active, :is_deleted])
   end
 end

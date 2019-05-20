@@ -9,4 +9,11 @@ defmodule Chat.ChannelUser do
     belongs_to :channel, Chat.Channel
     timestamps()
   end
+
+  def changeset(channel_user, params \\ %{}) do
+    channel_user
+    |> Ecto.Changeset.cast(params, [:user_id, :channel])
+    |> Ecto.Changeset.validate_required([:user_id, :channel])
+  end
+
 end

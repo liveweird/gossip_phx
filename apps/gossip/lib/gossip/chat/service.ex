@@ -11,16 +11,20 @@ defmodule Chat.Service do
     |> Gossip.Repo.all
   end
 
+  def create_channel(channel_name) when is_nil(channel_name) do
+    {:error, "Can't create channel without name."}
+  end
+
   def create_channel(channel_name) do
     changeset = Chat.Channel.changeset(%Chat.Channel{}, %{name: channel_name, is_private: false, is_deleted: false})
 
-    result =
-      case Gossip.Repo.insert(changeset) do
-        {:ok, %Chat.Channel{} = inserted} -> {:ok, inserted}
-        _ -> {:error, "Channel has not been created."}
-      end
-
-    result
+    with {:error, _} <- get_channel(channel_name),
+         {:ok, %Chat.Channel{} = inserted} <- Gossip.Repo.insert(changeset)
+    do
+      {:ok, inserted}
+    else
+      _ -> {:error, "Channel has not been created."}
+    end
   end
 
   def get_channel(channel_name) do

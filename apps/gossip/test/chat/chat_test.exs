@@ -20,11 +20,11 @@ defmodule Chat.ChannelTest do
     test "field-level validation prevents channel from being created" do
       {:error, message} = Chat.Contract.create_channel(nil)
 
-      assert "Channel has not been created." == message
+      assert "Can't create channel without name." == message
     end
 
     test "duplication prevents channel from being created" do
-      {:ok, inserted} = Chat.Contract.create_channel("xyz")
+      {:ok, _} = Chat.Contract.create_channel("xyz")
       {:error, message} = Chat.Contract.create_channel("xyz")
 
       assert "Channel has not been created." == message

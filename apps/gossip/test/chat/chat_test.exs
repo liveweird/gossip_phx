@@ -30,9 +30,18 @@ defmodule Chat.ChannelTest do
       assert "Channel has not been created." == message
     end
 
-    test "created user is the same as received" do
+    test "created channel is the same as received" do
       {:ok, inserted} = Chat.Contract.create_channel("xyz")
       {:ok, retrieved} = Chat.Contract.get_channel("xyz")
+
+      assert inserted.name == retrieved.name
+      assert inserted.is_private == retrieved.is_private
+      assert inserted.is_deleted == retrieved.is_deleted
+    end
+
+    test "created channel is being found" do
+      {:ok, inserted} = Chat.Contract.create_channel("xyz")
+      [ retrieved ] = Chat.Contract.get_all_channels()
 
       assert inserted.name == retrieved.name
       assert inserted.is_private == retrieved.is_private

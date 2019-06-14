@@ -60,4 +60,19 @@ defmodule Chat.Service do
     end
   end
 
+  def leave_channel(channel_name, user_name) do
+    with {:ok, channel} <- get_channel(channel_name),
+         {:ok, user} <- People.Contract.get_user(user_name)
+    do
+      query =
+        from cu in Chat.ChannelUser,
+        where: cu.channel == ^channel,
+        where: cu.user_id == ^user.user_id
+
+      Gossip.Repo.delete_all(query)
+    else
+      {:error, _} -> {:error, "Can't remove user from such channel."}
+    end
+  end
+
 end

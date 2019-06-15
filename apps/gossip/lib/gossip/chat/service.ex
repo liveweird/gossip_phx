@@ -75,4 +75,24 @@ defmodule Chat.Service do
     end
   end
 
+  def get_all_users_in_channel(channel_name) do
+    with {:ok, retrieved} <- get_channel(channel_name)
+    do
+      query =
+        from cu in Chat.ChannelUser,
+        left_join: channel in assoc(cu, :channel),
+        preload: [channel: channel],
+        join: u in People.User,
+        on: cu.user_id == u.id,
+        where: channel.id == ^retrieved.id,
+        select: {cu, u}
+
+      query
+        |> Gossip.Repo.all
+        |> Enum.map(fn {_, u} -> u end)
+    else
+      {:error, _} -> {:error, "Can't find any users for such channel."}
+    end
+  end
+
 end

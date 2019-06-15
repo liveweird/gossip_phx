@@ -48,5 +48,40 @@ defmodule Chat.ChannelTest do
       assert inserted.is_deleted == retrieved.is_deleted
     end
 
+    test "no users in a new channel" do
+      {:ok, _} = Chat.Contract.create_channel("xyz")
+      users = Chat.Contract.get_all_users_in_channel("xyz")
+
+      assert length(users) == 0
+    end
+
+    test "user is present in a joined channel" do
+
+    end
+
+    test "user can't join a channel twice" do
+
+    end
+
+    test "two users properly join channel" do
+
+    end
+
+    test "user properly leaves channel" do
+
+    end
+
+    test "user can't leave a non-existing channel" do
+
+    end
+
+    test "user can't leave a channel he's not in" do
+
+    end
+
+    test "non-existing user can't join a channel" do
+
+    end
+
   end
 end

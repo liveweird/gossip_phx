@@ -75,6 +75,24 @@ defmodule Chat.Service do
     end
   end
 
+  def is_user_in_channel(channel_name, user_name) do
+    with {:ok, retrieved} <- get_channel(channel_name),
+         {:ok, user} <- People.Contract.get_user(user_name)
+    do
+      query =
+        from cu in Chat.ChannelUser,
+        left_join: channel in assoc(cu, :channel),
+        preload: [channel: channel],
+        where: channel.id == ^retrieved.id,
+        where: cu.user_id == ^user.id
+
+      query
+        |> Gossip.Repo.exists?
+    else
+      {:error, _} -> {:error, "Can't find any users for such channel."}
+    end
+  end
+
   def get_all_users_in_channel(channel_name) do
     with {:ok, retrieved} <- get_channel(channel_name)
     do

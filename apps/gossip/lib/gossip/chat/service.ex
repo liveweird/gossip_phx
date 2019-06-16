@@ -46,15 +46,20 @@ defmodule Chat.Service do
     with {:ok, channel} <- get_channel(channel_name),
          {:ok, user} <- People.Contract.get_user(user_name)
     do
-      changeset = Chat.ChannelUser.changeset(%Chat.ChannelUser{}, %{channel: channel, user_id: user.id})
+      case is_user_in_channel(channel_name, user_name) do
+        true -> {:error, "User already in channel."}
+        false ->
+          changeset = Chat.ChannelUser.changeset(%Chat.ChannelUser{}, %{channel: channel, user_id: user.id})
 
-      result =
-        case Gossip.Repo.insert(changeset) do
-          {:ok, %Chat.ChannelUser{} = inserted} -> {:ok, inserted}
-          _ -> {:error, "User did not joined the channel."}
-        end
+          result =
+            case Gossip.Repo.insert(changeset) do
+              {:ok, %Chat.ChannelUser{} = inserted} -> {:ok, inserted}
+              _ -> {:error, "User did not joined the channel."}
+            end
 
-      result
+          result
+      end
+
     else
       {:error, _} -> {:error, "User cannot join this particular channel."}
     end

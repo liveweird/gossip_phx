@@ -79,8 +79,8 @@ defmodule Chat.ChannelTest do
     end
 
     test "can verify user's presence in channel when not joined" do
-      {:ok, channel} = Chat.Contract.create_channel("xyz")
-      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:ok, _} = Chat.Contract.create_channel("xyz")
+      {:ok, _} = People.Contract.create_user("abc", "abc desc")
 
       is_in_channel = Chat.Contract.is_user_in_channel("xyz", "abc")
 
@@ -92,12 +92,12 @@ defmodule Chat.ChannelTest do
     end
 
     test "user can't join a channel twice" do
-      # {:ok, channel} = Chat.Contract.create_channel("xyz")
-      # {:ok, user} = People.Contract.create_user("abc", "abc desc")
-      # {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
-      # {:error, message} = Chat.Contract.join_channel(channel.name, user.name)
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
+      {:error, message} = Chat.Contract.join_channel(channel.name, user.name)
 
-      # assert "Can't create channel without name." == message
+      assert "User already in channel." == message
     end
 
     test "two users properly join channel" do

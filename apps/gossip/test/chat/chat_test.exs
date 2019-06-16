@@ -56,7 +56,16 @@ defmodule Chat.ChannelTest do
     end
 
     test "user is present in a joined channel" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      Chat.Contract.join_channel(channel.name, user.name)
 
+      [ retrieved ] = Chat.Contract.get_all_users_in_channel("xyz")
+
+      assert user.name == retrieved.name
+      assert user.description == retrieved.description
+      assert user.is_active == retrieved.is_active
+      assert user.is_deleted == retrieved.is_deleted
     end
 
     test "user can't join a channel twice" do

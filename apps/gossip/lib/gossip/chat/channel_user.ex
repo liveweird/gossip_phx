@@ -12,7 +12,8 @@ defmodule Chat.ChannelUser do
 
   def changeset(channel_user, params \\ %{}) do
     channel_user
-    |> Ecto.Changeset.cast(params, [:user_id, :channel])
+    |> Ecto.Changeset.cast(params, [:user_id])
+    |> Ecto.Changeset.put_assoc(:channel, params.channel)
     |> Ecto.Changeset.validate_required([:user_id, :channel])
   end
 

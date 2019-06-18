@@ -74,7 +74,6 @@ defmodule Chat.ChannelTest do
       {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
 
       is_in_channel = Chat.Contract.is_user_in_channel("xyz", "abc")
-
       assert true == is_in_channel
     end
 
@@ -83,12 +82,7 @@ defmodule Chat.ChannelTest do
       {:ok, _} = People.Contract.create_user("abc", "abc desc")
 
       is_in_channel = Chat.Contract.is_user_in_channel("xyz", "abc")
-
       assert false == is_in_channel
-    end
-
-    test "can verify user's presence in channel if left" do
-
     end
 
     test "user can't join a channel twice" do
@@ -101,10 +95,29 @@ defmodule Chat.ChannelTest do
     end
 
     test "two users properly join channel" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user1} = People.Contract.create_user("abc", "abc desc")
+      {:ok, user2} = People.Contract.create_user("def", "def desc")
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user1.name)
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user2.name)
 
+      retrieved = Chat.Contract.get_all_users_in_channel("xyz")
+      assert 2 == Enum.count(retrieved)
+      assert true == Chat.Contract.is_user_in_channel("xyz", "abc")
+      assert true == Chat.Contract.is_user_in_channel("xyz", "def")
     end
 
     test "user properly leaves channel" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
+      {:ok, _} = Chat.Contract.leave_channel(channel.name, user.name)
+
+      [] = Chat.Contract.get_all_users_in_channel("xyz")
+      assert false == Chat.Contract.is_user_in_channel("xyz", "abc")
+    end
+
+    test "can verify user's presence in channel if left" do
 
     end
 

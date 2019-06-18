@@ -66,15 +66,23 @@ defmodule Chat.Service do
   end
 
   def leave_channel(channel_name, user_name) do
-    with {:ok, channel} <- get_channel(channel_name),
+    with {:ok, retrieved} <- get_channel(channel_name),
          {:ok, user} <- People.Contract.get_user(user_name)
     do
-      query =
-        from cu in Chat.ChannelUser,
-        where: cu.channel == ^channel,
-        where: cu.user_id == ^user.user_id
+      case is_user_in_channel(channel_name, user_name) do
+        false -> {:error, "User not present in the channel."}
+        true ->
+          query =
+            from cu in Chat.ChannelUser,
+            inner_join: channel in assoc(cu, :channel),
+            preload: [channel: channel],
+            where: channel.id == ^retrieved.id,
+            where: cu.user_id == ^user.id
 
-      Gossip.Repo.delete_all(query)
+          Gossip.Repo.delete_all(query |> exclude(:preload))
+
+          {:ok, user}
+      end
     else
       {:error, _} -> {:error, "Can't remove user from such channel."}
     end
@@ -86,7 +94,7 @@ defmodule Chat.Service do
     do
       query =
         from cu in Chat.ChannelUser,
-        left_join: channel in assoc(cu, :channel),
+        inner_join: channel in assoc(cu, :channel),
         preload: [channel: channel],
         where: channel.id == ^retrieved.id,
         where: cu.user_id == ^user.id
@@ -103,7 +111,7 @@ defmodule Chat.Service do
     do
       query =
         from cu in Chat.ChannelUser,
-        left_join: channel in assoc(cu, :channel),
+        inner_join: channel in assoc(cu, :channel),
         preload: [channel: channel],
         join: u in People.User,
         on: cu.user_id == u.id,

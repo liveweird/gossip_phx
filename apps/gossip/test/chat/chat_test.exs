@@ -114,24 +114,59 @@ defmodule Chat.ChannelTest do
       {:ok, _} = Chat.Contract.leave_channel(channel.name, user.name)
 
       [] = Chat.Contract.get_all_users_in_channel("xyz")
-      assert false == Chat.Contract.is_user_in_channel("xyz", "abc")
     end
 
     test "can verify user's presence in channel if left" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
+      {:ok, _} = Chat.Contract.leave_channel(channel.name, user.name)
+
+      assert false == Chat.Contract.is_user_in_channel("xyz", "abc")
+    end
+
+    test "user can't leave a channel he's not in" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:error, message} = Chat.Contract.leave_channel(channel.name, user.name)
+
+      assert "User not present in the channel." == message
+    end
+
+    test "user can't leave a channel he's already left" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
+      {:ok, _} = Chat.Contract.leave_channel(channel.name, user.name)
+      {:error, message} = Chat.Contract.leave_channel(channel.name, user.name)
+
+      assert "User not present in the channel." == message
+    end
+
+    test "user can't join a non-existing channel" do
+      {:ok, _} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:error, message} = Chat.Contract.join_channel("def", user.name)
+
+      assert "User cannot join this particular channel." == message
 
     end
 
     test "user can't leave a non-existing channel" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
+      {:error, message} = Chat.Contract.leave_channel("def", user.name)
 
-    end
-
-    test "user can't leave a channel he's not in" do
-
+      assert "Can't remove user from such channel." == message
     end
 
     test "non-existing user can't join a channel" do
 
     end
 
+    test "non-existing user can't leave a channel" do
+
+    end
   end
 end

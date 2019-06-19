@@ -149,7 +149,6 @@ defmodule Chat.ChannelTest do
       {:error, message} = Chat.Contract.join_channel("def", user.name)
 
       assert "User cannot join this particular channel." == message
-
     end
 
     test "user can't leave a non-existing channel" do
@@ -162,11 +161,20 @@ defmodule Chat.ChannelTest do
     end
 
     test "non-existing user can't join a channel" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, _} = People.Contract.create_user("abc", "abc desc")
+      {:error, message} = Chat.Contract.join_channel(channel.name, "def")
 
+      assert "User cannot join this particular channel." == message
     end
 
     test "non-existing user can't leave a channel" do
+      {:ok, channel} = Chat.Contract.create_channel("xyz")
+      {:ok, user} = People.Contract.create_user("abc", "abc desc")
+      {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
+      {:error, message} = Chat.Contract.leave_channel(channel.name, "def")
 
+      assert "Can't remove user from such channel." == message
     end
   end
 end

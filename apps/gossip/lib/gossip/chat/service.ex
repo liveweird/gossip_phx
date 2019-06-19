@@ -53,7 +53,7 @@ defmodule Chat.Service do
 
           result =
             case Gossip.Repo.insert(changeset) do
-              {:ok, %Chat.ChannelUser{} = inserted} -> {:ok, inserted}
+              {:ok, %Chat.ChannelUser{}} -> {:ok, channel}
               _ -> {:error, "User did not joined the channel."}
             end
 
@@ -81,7 +81,7 @@ defmodule Chat.Service do
 
           Gossip.Repo.delete_all(query |> exclude(:preload))
 
-          {:ok, user}
+          {:ok, retrieved}
       end
     else
       {:error, _} -> {:error, "Can't remove user from such channel."}

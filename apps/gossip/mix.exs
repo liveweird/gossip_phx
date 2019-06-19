@@ -38,7 +38,8 @@ defmodule Gossip.Mixfile do
     [
       {:postgrex, ">= 0.0.0"},
       {:ecto_sql, "~> 3.0"},
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:dialyxir, "~> 0.5.1", only: [:dev], runtime: false}
     ]
   end
 

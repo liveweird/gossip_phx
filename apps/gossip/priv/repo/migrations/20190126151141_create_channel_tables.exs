@@ -2,7 +2,9 @@ defmodule Gossip.Repo.Migrations.CreateChannelTables do
   use Ecto.Migration
 
   def change do
-    create table(:channels, primary_key: false) do
+    execute "CREATE SCHEMA chat"
+
+    create table(:channels, prefix: "chat", primary_key: false) do
       add :id, :uuid, primary_key: true
       add :name, :string
       add :is_private, :boolean, default: false
@@ -10,10 +12,10 @@ defmodule Gossip.Repo.Migrations.CreateChannelTables do
       timestamps()
       end
 
-    create table(:channel_users, primary_key: false) do
+    create table(:channel_users, prefix: "chat", primary_key: false) do
       add :id, :uuid, primary_key: true
       add :user_id, :uuid
-      add :channel_id, references("channels", column: :id, type: :uuid)
+      add :channel_id, references("channels", prefix: "chat", column: :id, type: :uuid)
       timestamps()
       end
   end

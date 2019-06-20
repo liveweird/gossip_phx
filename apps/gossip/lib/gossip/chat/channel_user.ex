@@ -4,6 +4,7 @@ defmodule Chat.ChannelUser do
   """
   use Ecto.Schema
 
+  @schema_prefix "chat"
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 

@@ -1,4 +1,7 @@
 defmodule Chat.Channel do
+  @moduledoc """
+  Representation of a channel.
+  """
   use Ecto.Schema
 
   @primary_key {:id, :binary_id, autogenerate: true}

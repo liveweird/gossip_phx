@@ -1,4 +1,7 @@
 defmodule Chat.Service do
+  @moduledoc """
+  Full implementation of the contract for chat module.
+  """
 
   import Ecto.Query
 
@@ -107,21 +110,20 @@ defmodule Chat.Service do
   end
 
   def get_all_users_in_channel(channel_name) do
-    with {:ok, retrieved} <- get_channel(channel_name)
-    do
-      query =
-        from cu in Chat.ChannelUser,
-        inner_join: channel in assoc(cu, :channel),
-        preload: [channel: channel],
-        join: u in People.User,
-        on: cu.user_id == u.id,
-        where: channel.id == ^retrieved.id,
-        select: {cu, u}
+    case get_channel(channel_name) do
+      {:ok, retrieved} ->
+        query =
+          from cu in Chat.ChannelUser,
+          inner_join: channel in assoc(cu, :channel),
+          preload: [channel: channel],
+          join: u in People.User,
+          on: cu.user_id == u.id,
+          where: channel.id == ^retrieved.id,
+          select: {cu, u}
 
-      query
-        |> Gossip.Repo.all
-        |> Enum.map(fn {_, u} -> u end)
-    else
+        query
+          |> Gossip.Repo.all
+          |> Enum.map(fn {_, u} -> u end)
       {:error, _} -> {:error, "Can't find any users for such channel."}
     end
   end

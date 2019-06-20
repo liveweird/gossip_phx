@@ -1,4 +1,8 @@
 defmodule SideEffects do
+  @moduledoc """
+  Side-effect infrastructure code.
+  """
+
   use GenServer
 
   def start_link() do
@@ -48,7 +52,7 @@ defmodule SideEffects do
   def handle_call({:register_handler, event_id, handler}, _from, event_map) do
     if Map.has_key?(event_map, event_id) do
       {:ok, handlers} = Map.fetch(event_map, event_id)
-      updated_handlers = [ handler | handlers ]
+      updated_handlers = [handler | handlers]
       updated_map = Map.put(event_map, event_id, updated_handlers)
       {:reply, :ok, updated_map}
     else

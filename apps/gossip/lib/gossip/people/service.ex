@@ -1,7 +1,9 @@
 defmodule People.Service do
+  @moduledoc """
+  Full implementation of the contract for people module.
+  """
 
   import Ecto.Query
-
   def create_user(user_name, user_description) do
     changeset = People.User.changeset(%People.User{}, %{name: user_name, description: user_description, is_active: true, is_deleted: false})
 
@@ -40,15 +42,14 @@ defmodule People.Service do
   end
 
   def block_user(user_name) do
-    with {:ok, user} <- get_user(user_name)
-    do
-      changeset = People.User.changeset(user, %{is_active: false})
+    case get_user(user_name) do
+      {:ok, user} ->
+        changeset = People.User.changeset(user, %{is_active: false})
 
-      case Gossip.Repo.update(changeset) do
-        {:ok, %People.User{} = blocked} -> {:ok, blocked}
-        _ -> {:error, "User has not been blocked."}
-      end
-    else
+        case Gossip.Repo.update(changeset) do
+          {:ok, %People.User{} = blocked} -> {:ok, blocked}
+          _ -> {:error, "User has not been blocked."}
+        end
       {:error, _} -> {:error, "User has not been found."}
     end
   end

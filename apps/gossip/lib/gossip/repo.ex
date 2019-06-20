@@ -1,4 +1,8 @@
 defmodule Gossip.Repo do
+  @moduledoc """
+  SQL repository shared across all the modules.
+  """
+
   use Ecto.Repo,
     otp_app: :gossip,
     adapter: Ecto.Adapters.Postgres

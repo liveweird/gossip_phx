@@ -1,4 +1,7 @@
 defmodule Chat.ChannelUser do
+  @moduledoc """
+  Just a relationship between a Channel and a User who've joined it,
+  """
   use Ecto.Schema
 
   @primary_key {:id, :binary_id, autogenerate: true}

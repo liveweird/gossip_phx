@@ -1,4 +1,7 @@
 defmodule People.Contract do
+  @moduledoc """
+  Public contract of whole people module.
+  """
 
   @spec create_user(String.t(), String.t()) :: {:ok, %People.User{}} | {:error, String.t()}
   defdelegate create_user(user_name, user_description), to: People.Service

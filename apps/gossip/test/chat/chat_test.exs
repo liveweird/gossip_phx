@@ -6,7 +6,7 @@ defmodule Chat.ChannelTest do
     test "empty list of channels" do
       channels = Chat.Contract.get_all_channels()
 
-      assert length(channels) == 0
+      assert channels == []
     end
 
     test "create a channel" do
@@ -41,7 +41,7 @@ defmodule Chat.ChannelTest do
 
     test "created channel is being found" do
       {:ok, inserted} = Chat.Contract.create_channel("xyz")
-      [ retrieved ] = Chat.Contract.get_all_channels()
+      [retrieved] = Chat.Contract.get_all_channels()
 
       assert inserted.name == retrieved.name
       assert inserted.is_private == retrieved.is_private
@@ -52,7 +52,7 @@ defmodule Chat.ChannelTest do
       {:ok, _} = Chat.Contract.create_channel("xyz")
       users = Chat.Contract.get_all_users_in_channel("xyz")
 
-      assert length(users) == 0
+      assert users == []
     end
 
     test "user is present in a joined channel" do
@@ -60,7 +60,7 @@ defmodule Chat.ChannelTest do
       {:ok, user} = People.Contract.create_user("abc", "abc desc")
       {:ok, _} = Chat.Contract.join_channel(channel.name, user.name)
 
-      [ retrieved ] = Chat.Contract.get_all_users_in_channel("xyz")
+      [retrieved] = Chat.Contract.get_all_users_in_channel("xyz")
 
       assert user.name == retrieved.name
       assert user.description == retrieved.description

@@ -1,4 +1,7 @@
 defmodule Chat.Contract do
+  @moduledoc """
+  Public contract of whole chat module.
+  """
 
   @spec get_all_channels() :: list(%Chat.Channel{})
   defdelegate get_all_channels, to: Chat.Service

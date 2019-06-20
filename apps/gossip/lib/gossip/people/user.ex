@@ -1,4 +1,8 @@
 defmodule People.User do
+  @moduledoc """
+  Representation of a user.
+  """
+
   use Ecto.Schema
 
   @primary_key {:id, :binary_id, autogenerate: true}

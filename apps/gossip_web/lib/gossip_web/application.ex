@@ -1,4 +1,8 @@
 defmodule GossipWeb.Application do
+  @moduledoc """
+  Main HTTP Web API application module.
+  """
+
   use Application
 
   def start(_type, _args) do

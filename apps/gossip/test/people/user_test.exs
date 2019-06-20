@@ -6,7 +6,7 @@ defmodule People.UserTest do
     test "empty list of active users" do
       users = People.Contract.get_active_users()
 
-      assert length(users) == 0
+      assert users == []
     end
 
     test "create a user" do

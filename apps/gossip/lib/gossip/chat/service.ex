@@ -116,7 +116,7 @@ defmodule Chat.Service do
           from cu in Chat.ChannelUser,
           inner_join: channel in assoc(cu, :channel),
           preload: [channel: channel],
-          join: u in People.User,
+          join: u in Chat.ActiveUser,
           on: cu.user_id == u.id,
           where: channel.id == ^retrieved.id,
           select: {cu, u}

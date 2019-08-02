@@ -64,8 +64,6 @@ defmodule Chat.ChannelTest do
 
       assert user.name == retrieved.name
       assert user.description == retrieved.description
-      assert user.is_active == retrieved.is_active
-      assert user.is_deleted == retrieved.is_deleted
     end
 
     test "can verify user's present in channel if joined" do
